@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Front-end Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        /* 3. Keyframes สำหรับ "ลูกเล่น" (แถบเพลง) */
+        @keyframes progress-bar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress-bar {
+            animation: progress-bar 30s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-200 selection:bg-purple-500 selection:text-white">
+
+    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md shadow-lg shadow-purple-900/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">[Your Name]</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">หน้าแรก</a>
+                <a href="#about" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">เกี่ยวกับผม</a>
+                <a href="#projects" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">ผลงาน</a>
+                <a href="#contact" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">ติดต่อ</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 px-6">
+        <div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 
+                       text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                [ใส่ชื่อของคุณ]
+            </h1>
+            <p class="text-2xl md:text-3xl text-purple-300 font-semibold mb-8">
+                Front-end Developer
+            </p>
+            <div class="space-x-4">
+                <a href="#about" 
+                   class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-lg 
+                          hover:bg-purple-700 transition-all duration-300 transform hover:scale-105">
+                    เกี่ยวกับผม
+                </a>
+                <a href="#contact" 
+                   class="bg-gray-700 text-gray-200 px-6 py-3 rounded-lg font-semibold text-lg 
+                          hover:bg-gray-600 transition-all duration-300 transform hover:scale-105">
+                    ติดต่อผม
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">เกี่ยวกับผม (About Me)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://via.placeholder.com/500x500.png?text=Your+Profile+Pic" 
+                         alt="รูปโปรไฟล์" 
+                         class="rounded-lg shadow-xl shadow-purple-600/30 w-full max-w-md mx-auto
+                                transition-transform duration-300 hover:scale-105">
+                </div>
+                
+                <div class="text-lg text-gray-300">
+                    <p class="mb-4">
+                        สวัสดีครับ! ผม [ชื่อของคุณ] เป็น Front-end Developer ที่หลงใหลในการเปลี่ยนไอเดีย
+                        ให้กลายเป็น UI ที่สวยงาม ลื่นไหล และตอบโจทย์ผู้ใช้งาน
+                    </p>
+                    <p class="mb-6">
+                        ผมเชี่ยวชาญการใช้ React, Next.js และรักการจัดสไตล์ด้วย Tailwind CSS 
+                        เพื่อสร้างประสบการณ์การใช้งานที่น่าประทับใจ
+                    </p>
+                    
+                    <div class="bg-slate-800/70 border border-purple-800 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold text-white mb-3">ข้อมูลเล็กๆ น้อยๆ (TMI):</h4>
+                        <ul class="list-disc list-inside space-y-2 text-purple-300">
+                            <li><span class="text-gray-300"><strong>กิจกรรมที่ชอบ:</strong> นอน 😴</span></li>
+                            <li><span class="text-gray-300"><strong>เครื่องดื่มที่ชอบ:</strong> กาแฟ Drip</span></li>
+                            <li><span class="text-gray-300"><strong>กำลังอินกับ:</strong> Custom Mechanical Keyboards</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobby" class="py-20 bg-gradient-to-t from-slate-900 to-indigo-950">
+        <div class="container mx-auto px-6 text-center">
+            
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-green-400 font-semibold"> กำลังฟังเพลงอะไร</span>
+            </div>
+            
+            <h2 class="text-4xl font-bold mb-8 text-white">Bluebird</h2>
+            
+            <div class="max-w-md mx-auto bg-slate-800 rounded-lg shadow-xl shadow-purple-700/20 p-6">
+                <div class="flex items-center space-x-4">
+                    <img src="https://i.scdn.co/image/ab67616d0000b27397639445be97b21a453dc942" alt="Album Art" class="w-24 h-24 rounded-md">
+                    <div class="text-left w-full">
+                        <p class="text-xl font-semibold text-white">Bluebird</p>
+                        <p class="text-md text-gray-400">Lana Del Rey</p>
+                        
+                        <div class="w-full bg-gray-600 rounded-full h-1.5 mt-3">
+                            <div class="bg-purple-500 h-1.5 rounded-full animate-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">ผลงาน (Projects)</h2>
+            
+            <div class="max-w-3xl mx-auto space-y-12">
+                
+                <a href="#" class="block bg-slate-800 rounded-lg shadow-lg overflow-hidden
+                                  transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 
+                                  hover:-translate-y-2 group">
+                    <div class="overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=Project+1+Screenshot" alt="Project 1" 
+                             class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-white transition-colors group-hover:text-purple-400">
+                            [ชื่อโปรเจกต์ 1]
+                        </h3>
+                        <p class="text-gray-400 mb-4">
+                            คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ว่าทำอะไร ใช้เทคโนโลยีอะไร (เช่น React, Vue, Tailwind)
+                        </p>
+                        <span class="font-semibold text-purple-400 transition-transform duration-300 inline-block group-hover:translate-x-2">
+                            ดูโปรเจกต์ &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <a href="#" class="block bg-slate-800 rounded-lg shadow-lg overflow-hidden
+                                  transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 
+                                  hover:-translate-y-2 group">
+                    <div class="overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400.png?text=Project+2+Screenshot" alt="Project 2" 
+                             class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-white transition-colors group-hover:text-purple-400">
+                            [ชื่อโปรเจกต์ 2]
+                        </h3>
+                        <p class="text-gray-400 mb-4">
+                            คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ว่าทำอะไร ใช้เทคโนโลยีอะไร (เช่น Static HTML, Bootstrap)
+                        </p>
+                        <span class="font-semibold text-purple-400 transition-transform duration-300 inline-block group-hover:translate-x-2">
+                            ดูโปรเจกต์ &rarr;
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gradient-to-t from-slate-900 to-purple-950 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 text-purple-300">ติดต่อผม (Contact)</h2>
+            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+                สนใจร่วมงาน หรืออยากพูดคุยทักทาย สามารถติดต่อผมได้ผ่านช่องทางด้านล่างนี้เลยครับ
+            </p>
+            
+            <div class="flex justify-center space-x-8">
+                <a href="[Your GitHub URL]" target="_blank" 
+                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="GitHub">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.831.092-.646.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.949 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.025.798-.222 1.647-.333 2.495-.337.848.004 1.697.115 2.495.337 1.91-1.295 2.75-1.025 2.75-1.025.546 1.375.201 2.392.098 2.645.64.698 1.03 1.59 1.03 2.682 0 3.848-2.339 4.691-4.564 4.942.359.309.678.92.678 1.856 0 1.342-.012 2.423-.012 2.752 0 .269.18.579.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.facebook.com/komsan.mawonkanong?locale=th_TH" target="_blank" 
+                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="Facebook">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.901v-2.89h2.537V9.63c0-2.508 1.493-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.771l-.443 2.89h-2.328v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.instagram.com/seaw_88/" target="_blank" 
+                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="Instagram">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zm0-10a4 4 0 100 8 4 4 0 000-8zm6.5-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-gray-400 py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h4 class="font-semibold text-lg mb-2 text-white">Quick Links</h4>
+                <ul class="space-y-1">
+                    <li><a href="#home" class="hover:text-purple-400 transition-colors">หน้าแรก</a></li>
+                    <li><a href="#about" class="hover:text-purple-400 transition-colors">เกี่ยวกับผม</a></li>
+                    <li><a href="#projects" class="hover:text-purple-400 transition-colors">ผลงาน</a></li>
+                    <li><a href="#contact" class="hover:text-purple-400 transition-colors">ติดต่อ</a></li>
+                </ul>
+            </div>
+            
+            <div class="mt-8 md:mt-0 text-center md:text-right">
+                <p class="text-gray-500">&copy; 2025 [Your Name]. All rights reserved.</p>
+                <p class="text-sm text-purple-600">Made with 💜 and Tailwind CSS</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

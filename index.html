@@ -3,89 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Komsan - เว็ปไซต์แนะนำตนเอง</title>
+    <title>[Your Name] - Front-end Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+        /* ฟอนต์ไทยสำหรับเนื้อหาทั่วไป */
         body {
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Sarabun', sans-serif; 
         }
 
-        /* 3. Keyframes สำหรับ "ลูกเล่น" (แถบเพลง) */
-        @keyframes progress-bar {
-            0% { width: 0%; }
-            100% { width: 100%; }
+        /* ฟอนต์ Pixel สำหรับหัวข้อ (เลียนแบบเว็บต้นฉบับ) */
+        .font-pixel {
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px #000000; /* เพิ่มเงาให้ตัวอักษรดูชัด */
         }
-        .animate-progress-bar {
-            animation: progress-bar 30s linear infinite;
+        
+        /* สไตล์ปุ่มแบบ "เหลี่ยม" สไตล์ Minecraft */
+        .btn-pixel {
+            @apply px-6 py-3 text-lg font-bold text-gray-900 bg-yellow-400 border-b-4 border-yellow-600 rounded-sm
+                   transition-all duration-150 ease-in-out
+                   hover:bg-yellow-300 hover:border-yellow-500 hover:translate-y-0.5;
+        }
+
+        .btn-pixel-secondary {
+             @apply px-6 py-3 text-lg font-bold text-white bg-gray-700 border-b-4 border-gray-900 rounded-sm
+                   transition-all duration-150 ease-in-out
+                   hover:bg-gray-600 hover:border-gray-800 hover:translate-y-0.5;
+        }
+
+        /* สไตล์การ์ดแบบเหลี่ยม (สำหรับผลงาน) */
+        .card-pixel {
+            @apply bg-gray-800 border-2 border-gray-700 rounded-sm p-6 transition-all duration-300
+                   hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-1;
         }
     </style>
 </head>
-<body class="bg-slate-900 text-gray-200 selection:bg-purple-500 selection:text-white">
+<body class="bg-gray-900 text-gray-200">
 
-    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md shadow-lg shadow-purple-900/10">
+    <nav class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-lg shadow-black/30 border-b border-gray-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-white">Komsan Mawonkanong</div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">หน้าแรก</a>
-                <a href="#about" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">เกี่ยวกับผม</a>
-                <a href="#projects" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">ผลงาน</a>
-                <a href="#contact" class="text-gray-300 hover:text-purple-400 transition-colors duration-300">ติดต่อ</a>
+            <a href="#home" class="font-pixel text-2xl text-yellow-400">[YOUR NAME]</a>
+            
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#about" class="text-white hover:text-yellow-400 transition-colors">เกี่ยวกับผม</a>
+                <a href="#projects" class="text-white hover:text-yellow-400 transition-colors">ผลงาน</a>
+                <a href="#contact" class="text-white hover:text-yellow-400 transition-colors">ติดต่อผม</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="h-screen flex items-center justify-center text-center bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 px-6">
-        <div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 
-                       text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-                สวัสดีครับ
+    <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden 
+                         bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10"></div>
+
+        <div class="relative z-20 p-6">
+            <h1 class="font-pixel text-5xl md:text-7xl text-white mb-6">
+                [YOUR NAME]
             </h1>
-            <p class="text-2xl md:text-3xl text-purple-300 font-semibold mb-8">
-                ผม คมสันต์ มะวอนคนอง
+            <p class="font-pixel text-2xl text-yellow-400 mb-10">
+                Front-end Developer
             </p>
-            <div class="space-x-4">
-                <a href="#about" 
-                   class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-lg 
-                          hover:bg-purple-700 transition-all duration-300 transform hover:scale-105">
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#about" class="btn-pixel">
                     เกี่ยวกับผม
                 </a>
-                <a href="#contact" 
-                   class="bg-gray-700 text-gray-200 px-6 py-3 rounded-lg font-semibold text-lg 
-                          hover:bg-gray-600 transition-all duration-300 transform hover:scale-105">
+                <a href="#contact" class="btn-pixel-secondary">
                     ติดต่อผม
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-slate-900">
+    <section id="about" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">เกี่ยวกับผม (About Me)</h2>
+            <h2 class="font-pixel text-4xl text-center text-yellow-400 mb-12">
+                ABOUT ME
+            </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
                 <div>
-                    <img src="https://img.redbull.com/images/c_crop,w_2640,h_1320,x_190,y_0/c_auto,w_1200,h_630/f_auto,q_auto/redbullcom/2025/8/11/dcusojkfgapu4zxe3gtb/minecraft-landscape" 
+                    <img src="https://via.placeholder.com/500x500.png?text=Your+Profile+Pic" 
                          alt="รูปโปรไฟล์" 
-                         class="rounded-lg shadow-xl shadow-purple-600/30 w-full max-w-md mx-auto
-                                transition-transform duration-300 hover:scale-105">
+                         class="rounded-sm shadow-lg w-full max-w-md mx-auto 
+                                border-4 border-gray-700 transition-all duration-300 hover:border-yellow-400">
                 </div>
                 
                 <div class="text-lg text-gray-300">
                     <p class="mb-4">
-                        สวัสดีครับ! ผม คมสันต์ เมื่อก่อนผมแทบเป็นคนที่ไม่รู้จักเทคโนโลยีเลย แต่เมื่อเริ่มโตขึ้น ความรู้ใหม่ๆเริ่มเข้ามา รู้ตัวอีกทีผมก็หลงไหลในเทคโนโลยีเข้าซะแล้ว
+                        สวัสดีครับ! ผม [ชื่อของคุณ] เป็น Front-end Developer ที่มีความมุ่งมั่นในการสร้างสรรค์เว็บไซต์
+                        ที่สวยงาม ใช้งานง่าย และตอบโจทย์ผู้ใช้งาน
                     </p>
                     <p class="mb-6">
-                        ผมชอบในการทำเซิฟเวอร์ของเกมMinecraftเป็นอย่างมาก เพราะมันทำให้รู้สึกได้ปลดปล่อยจินตนาการต่างๆมากมายของผม
+                        ผมมีความเชี่ยวชาญใน <span class="text-yellow-400 font-bold">HTML, CSS, JavaScript</span> 
+                        และคุ้นเคยกับ Framework สมัยใหม่เช่น 
+                        <span class="text-yellow-400 font-bold">React</span> และ 
+                        <span class="text-yellow-400 font-bold">Tailwind CSS</span> ครับ
                     </p>
                     
-                    <div class="bg-slate-800/70 border border-purple-800 p-6 rounded-lg">
-                        <h4 class="text-xl font-semibold text-white mb-3">ข้อมูลเล็กๆน้อยๆ(TMI):</h4>
-                        <ul class="list-disc list-inside space-y-2 text-purple-300">
-                            <li><span class="text-gray-300"><strong>กิจกรรมที่ชอบ:</strong> นอน 😴</span></li>
-                            <li><span class="text-gray-300"><strong>เครื่องดื่มที่ชอบ:</strong> ชาเขียว</span></li>
-                            <li><span class="text-gray-300"><strong>กำลังอินกับ:</strong> ระบบของMINECRAFT SERVERS</span></li>
+                    <div class="bg-gray-800 border border-gray-700 p-6 rounded-sm">
+                        <h4 class="text-xl font-bold text-white mb-3">TMI (ข้อมูลเล็กน้อย):</h4>
+                        <ul class="list-none space-y-2">
+                            <li><span class="text-yellow-400">❖</span> <strong>กิจกรรมที่ชอบ:</strong> นอน 😴</li>
+                            <li><span class="text-yellow-400">❖</span> <strong>เครื่องดื่มที่ชอบ:</strong> กาแฟดำ</li>
+                            <li><span class="text-yellow-400">❖</span> <strong>กำลังฟังเพลง:</strong> [ชื่อศิลปิน/เพลง]</li>
                         </ul>
                     </div>
                 </div>
@@ -93,89 +119,73 @@
         </div>
     </section>
 
-    <section id="hobby" class="py-20 bg-gradient-to-t from-slate-900 to-indigo-950">
-        <div class="container mx-auto px-6 text-center">
+    <section id="projects" class="py-20 bg-gray-950"> <div class="container mx-auto px-6">
+            <h2 class="font-pixel text-4xl text-center text-yellow-400 mb-12">
+                PROJECTS
+            </h2>
             
-            <div class="flex items-center justify-center space-x-2 mb-4">
-                <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                </span>
-                <span class="text-green-400 font-semibold"> กำลังฟังเพลงอะไร</span>
-            </div>
-            
-            <h2 class="text-4xl font-bold mb-8 text-white">Bluebird</h2>
-            
-            <div class="max-w-md mx-auto bg-slate-800 rounded-lg shadow-xl shadow-purple-700/20 p-6">
-                <div class="flex items-center space-x-4">
-                    <img src="https://i.scdn.co/image/ab67616d0000b27397639445be97b21a453dc942" alt="Album Art" class="w-24 h-24 rounded-md">
-                    <div class="text-left w-full">
-                        <p class="text-xl font-semibold text-white">Bluebird</p>
-                        <p class="text-md text-gray-400">Lana Del Rey</p>
-                        
-                        <div class="w-full bg-gray-600 rounded-full h-1.5 mt-3">
-                            <div class="bg-purple-500 h-1.5 rounded-full animate-progress-bar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-slate-900">
-        <div class="container mx-auto px-6">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-purple-300">ผลงานและโปรเจ็คต่างๆ</h2>
-            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-                ตอนนี้อาจจะยังน้า แต่วันหลังน่ะมาแน่
-            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
+                <div class="card-pixel">
+                    <img src="https://via.placeholder.com/600x400.png?text=Project+1" alt="Project 1" class="rounded-sm mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">[ชื่อโปรเจกต์ 1]</h3>
+                    <p class="text-gray-300 mb-4">
+                        คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ว่าทำอะไร ใช้เทคโนโลยีอะไร (เช่น React, Vue, Tailwind)
+                    </p>
+                    <a href="#" class="font-bold text-yellow-500 hover:text-yellow-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+
+                <div class="card-pixel">
+                    <img src="https://via.placeholder.com/600x400.png?text=Project+2" alt="Project 2" class="rounded-sm mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">[ชื่อโปรเจกต์ 2]</h3>
+                    <p class="text-gray-300 mb-4">
+                        คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ว่าทำอะไร ใช้เทคโนโลยีอะไร (เช่น Static HTML, Bootstrap)
+                    </p>
+                    <a href="#" class="font-bold text-yellow-500 hover:text-yellow-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+
+                <div class="card-pixel">
+                    <img src="https://via.placeholder.com/600x400.png?text=Project+3" alt="Project 3" class="rounded-sm mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">[ชื่อโปรเจกต์ 3]</h3>
+                    <p class="text-gray-300 mb-4">
+                        คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์นี้ ว่าทำอะไร ใช้เทคโนโลยีอะไร
+                    </p>
+                    <a href="#" class="font-bold text-yellow-500 hover:text-yellow-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gradient-to-t from-slate-900 to-purple-950 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-purple-300">ติดต่อผม (Contact)</h2>
-            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h2 class="font-pixel text-4xl text-center text-yellow-400 mb-8">
+                CONTACT ME
+            </h2>
+            <p class="text-lg text-gray-300 mb-10">
                 สนใจร่วมงาน หรืออยากพูดคุยทักทาย สามารถติดต่อผมได้ผ่านช่องทางด้านล่างนี้เลยครับ
             </p>
             
             <div class="flex justify-center space-x-8">
-                <a href="[Your GitHub URL]" target="_blank" 
-                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="GitHub">
+                <a href="[Your GitHub URL]" target="_blank" class="text-gray-400 hover:text-yellow-400 transform hover:scale-110 transition-all duration-300" title="GitHub">
                     <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.831.092-.646.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.949 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.025.798-.222 1.647-.333 2.495-.337.848.004 1.697.115 2.495.337 1.91-1.295 2.75-1.025 2.75-1.025.546 1.375.201 2.392.098 2.645.64.698 1.03 1.59 1.03 2.682 0 3.848-2.339 4.691-4.564 4.942.359.309.678.92.678 1.856 0 1.342-.012 2.423-.012 2.752 0 .269.18.579.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
                 </a>
-                <a href="https://www.facebook.com/komsan.mawonkanong?locale=th_TH" target="_blank" 
-                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="Facebook">
+                <a href="[Your Facebook URL]" target="_blank" class="text-gray-400 hover:text-yellow-400 transform hover:scale-110 transition-all duration-300" title="Facebook">
                     <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.901v-2.89h2.537V9.63c0-2.508 1.493-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.771l-.443 2.89h-2.328v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
                 </a>
-                <a href="https://www.instagram.com/seaw_88/" target="_blank" 
-                   class="text-gray-400 hover:text-purple-400 transform hover:scale-125 transition-all duration-300" title="Instagram">
+                <a href="[Your Instagram URL]" target="_blank" class="text-gray-400 hover:text-yellow-400 transform hover:scale-110 transition-all duration-300" title="Instagram">
                     <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zm0-10a4 4 0 100 8 4 4 0 000-8zm6.5-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z" clip-rule="evenodd" /></svg>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-950 text-gray-400 py-12">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div>
-                <h4 class="font-semibold text-lg mb-2 text-white">Quick Links</h4>
-                <ul class="space-y-1">
-                    <li><a href="#home" class="hover:text-purple-400 transition-colors">หน้าแรก</a></li>
-                    <li><a href="#about" class="hover:text-purple-400 transition-colors">เกี่ยวกับผม</a></li>
-                    <li><a href="#projects" class="hover:text-purple-400 transition-colors">ผลงาน</a></li>
-                    <li><a href="#contact" class="hover:text-purple-400 transition-colors">ติดต่อ</a></li>
-                </ul>
-            </div>
-            
-            <div class="mt-8 md:mt-0 text-center md:text-right">
-                <p class="text-gray-500">&copy; 2025 [Your Name]. All rights reserved.</p>
-                <p class="text-sm text-purple-600">Made with 💜</p>
-            </div>
+    <footer class="bg-gray-950 border-t border-gray-800 py-10">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+            <p class="text-sm text-yellow-600">Portfolio Theme inspired by LegacyCraft</p>
         </div>
     </footer>
-
+    
 </body>
 </html>

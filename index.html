@@ -1,172 +1,228 @@
 <!DOCTYPE html>
 <html lang="th" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Komsan Mawonkanong</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komsan Mawonkanong</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    body { font-family: 'Sarabun', sans-serif; }
+    <style>
+        /* ฟอนต์ไทยสำหรับเนื้อหาทั่วไป */
+        body { font-family: 'Sarabun', sans-serif; }
+        
+        /* สไตล์ปุ่มแบบ "เหลี่ยม" (ยังคงคอนเซ็ปต์เดิม แต่ดูสุภาพขึ้น) */
+        .btn-custom {
+            @apply px-6 py-3 text-lg font-bold text-white bg-purple-600 border-b-4 border-purple-800 rounded-md
+                   transition-all duration-150 ease-in-out
+                   hover:bg-purple-500 hover:border-purple-700 hover:translate-y-0.5;
+        }
+        .btn-custom-secondary {
+             @apply px-6 py-3 text-lg font-bold text-white bg-gray-700 border-b-4 border-gray-900 rounded-md
+                   transition-all duration-150 ease-in-out
+                   hover:bg-gray-600 hover:border-gray-800 hover:translate-y-0.5;
+        }
 
-    .btn-custom {
-      @apply px-6 py-3 text-lg font-bold text-white bg-purple-600 border-b-4 border-purple-800 rounded-md
-             transition-all duration-150 ease-in-out
-             hover:bg-purple-500 hover:border-purple-700 hover:translate-y-0.5;
-    }
-    .btn-custom-secondary {
-      @apply px-6 py-3 text-lg font-bold text-white bg-gray-700 border-b-4 border-gray-900 rounded-md
-             transition-all duration-150 ease-in-out
-             hover:bg-gray-600 hover:border-gray-800 hover:translate-y-0.5;
-    }
-    .card-custom {
-      @apply bg-gray-800 border-2 border-gray-700 rounded-md p-6 transition-all duration-300
-             hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1;
-    }
-    @keyframes progress-bar {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-    .animate-progress-bar { animation: progress-bar 30s linear infinite; }
-  </style>
+        /* สไตล์การ์ดแบบเหลี่ยม */
+        .card-custom {
+            @apply bg-gray-800 border-2 border-gray-700 rounded-md p-6 transition-all duration-300
+                   hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1;
+        }
+        
+        /* สไตล์สำหรับ Modal (Popup) รูปภาพ */
+        .modal-bg {
+            @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50
+                   flex items-center justify-center p-4 transition-opacity duration-300;
+        }
+        .modal-content {
+            @apply max-w-3xl max-h-[80vh] rounded-md overflow-hidden border-4 border-purple-500;
+        }
+
+        /* Keyframes สำหรับ Progress Bar ของเพลง */
+        @keyframes progress-bar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress-bar {
+            animation: progress-bar 30s linear infinite; /* 30 วินาทีต่อรอบ */
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
 
-  <!-- 🌐 Navbar -->
-  <nav class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-lg shadow-black/30 border-b border-gray-800">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#home" class="text-2xl font-bold text-purple-400"
-         data-th="คมสันต์ มะวอนคนอง" data-en="Komsan Mawonkanong">Komsan Mawonkanong</a>
-      <div class="hidden md:flex space-x-8 text-lg">
-        <a href="#about" class="text-white hover:text-purple-400 transition-colors" data-th="เกี่ยวกับผม" data-en="About">เกี่ยวกับผม</a>
-        <a href="#favorites" class="text-white hover:text-purple-400 transition-colors" data-th="สิ่งที่ชอบ" data-en="Favorites">สิ่งที่ชอบ</a>
-        <a href="#projects" class="text-white hover:text-purple-400 transition-colors" data-th="ผลงาน" data-en="Projects">ผลงาน</a>
-        <a href="#contact" class="text-white hover:text-purple-400 transition-colors" data-th="ติดต่อผม" data-en="Contact">ติดต่อผม</a>
-      </div>
-
-      <!-- 🔘 ปุ่มเปลี่ยนภาษา -->
-      <button id="lang-toggle" class="ml-6 text-purple-400 font-bold hover:text-purple-300 transition-colors">
-        EN
-      </button>
-    </div>
-  </nav>
-
-  <!-- 🏠 หน้าแรก -->
-  <section id="home" class="relative h-screen flex items-center justify-center text-center 
-                           bg-gradient-to-br from-gray-900 via-gray-950 to-indigo-950">
-    <div class="relative z-20 p-6">
-      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Komsan Mawonkanong</h1>
-      <p class="text-2xl text-purple-400 mb-10" data-th="คมสันต์ มะวอนคนอง" data-en="Komsan Mawonkanong">คมสันต์ มะวอนคนอง</p>
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <a href="#about" class="btn-custom" data-th="เกี่ยวกับผม" data-en="About Me">เกี่ยวกับผม</a>
-        <a href="#contact" class="btn-custom-secondary" data-th="ติดต่อผม" data-en="Contact Me">ติดต่อผม</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 👨‍💻 About -->
-  <section id="about" class="py-20 bg-gray-900">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center text-purple-400 mb-12" data-th="เกี่ยวกับผม" data-en="About Me">เกี่ยวกับผม</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-        <div>
-          <img src="https://via.placeholder.com/500x500.png?text=Your+Profile+Pic" alt="รูปโปรไฟล์"
-               class="rounded-md shadow-lg w-full max-w-md mx-auto border-4 border-gray-700 transition-all duration-300 hover:border-purple-400">
+    <nav class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-lg shadow-black/30 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-purple-400">Komsan Mawonianong</a>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#about" class="text-white hover:text-purple-400 transition-colors">เกี่ยวกับผม</a>
+                <a href="#favorites" class="text-white hover:text-purple-400 transition-colors">สิ่งที่ชอบ</a>
+                <a href="#projects" class="text-white hover:text-purple-400 transition-colors">ผลงาน</a>
+                <a href="#contact" class="text-white hover:text-purple-400 transition-colors">ติดต่อผม</a>
+            </div>
         </div>
-        <div class="text-lg text-gray-300">
-          <p class="mb-4" data-th="สวัสดีครับ! ผม กาย เมื่อก่อนผมแทบไม่รู้จักเทคโนโลยีเลย เมื่อเวลาผ่านไปพอโตขึ้นเทคโนโลยีใหม่ๆเริ่มเข้ามา ผมก็เริ่มเข้าไปใช้เทคโนโลยี ผมก็เริ่มหลงไหลในเทคโนโลยี"
-             data-en="Hello! I’m Kai. I used to know very little about technology, but as time passed and new innovations emerged, I began to explore and fell in love with it.">
-             สวัสดีครับ! ผม กาย เมื่อก่อนผมแทบไม่รู้จักเทคโนโลยีเลย เมื่อเวลาผ่านไปพอโตขึ้นเทคโนโลยีใหม่ๆเริ่มเข้ามา ผมก็เริ่มเข้าไปใช้เทคโนโลยี ผมก็เริ่มหลงไหลในเทคโนโลยี
-          </p>
-          <p class="mb-6" data-th="ตอนนี้ผมชอบทำเซิฟ Minecraft มากกกกกกกกก" data-en="Now I really enjoy creating Minecraft servers!">ตอนนี้ผมชอบทำเซิฟ Minecraft มากกกกกกกกก</p>
+    </nav>
+
+    <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden 
+                         bg-gradient-to-br from-gray-900 via-gray-950 to-indigo-950">
+        <div class="relative z-20 p-6">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Komsan Mawonkanong</h1>
+            <p class="text-2xl text-purple-400 mb-10">คมสันต์ มะวอนคนอง</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#about" class="btn-custom">เกี่ยวกับผม</a>
+                <a href="#contact" class="btn-custom-secondary">ติดต่อผม</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 💜 Favorites -->
-  <section id="favorites" class="py-20 bg-gray-950">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center text-purple-400 mb-12" data-th="สิ่งที่ชอบ" data-en="My Favorites">สิ่งที่ชอบ</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
-        <div class="card-custom">
-          <h3 class="text-2xl font-bold text-purple-400 mb-4" data-th="เพลงที่ชอบ" data-en="Favorite Song">เพลงที่ชอบ</h3>
-          <img src="https://i.scdn.co/image/ab67616d0000b27397639445be97b21a453dc942" alt="Album Art" class="rounded-md mb-4 border border-gray-700">
-          <p class="text-xl font-bold text-white">bluebird</p>
-          <p class="text-lg text-gray-400">Lana Del Rey</p>
-          <div class="w-full bg-gray-600 rounded-full h-1.5 mt-4">
-            <div class="bg-purple-500 h-1.5 rounded-full animate-progress-bar"></div>
-          </div>
+    </section>
+    
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-12">
+                ABOUT ME
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                <div>
+                    <img src="https://via.placeholder.com/500x500.png?text=Your+Profile+Pic" 
+                         alt="รูปโปรไฟล์" 
+                         class="rounded-md shadow-lg w-full max-w-md mx-auto 
+                                border-4 border-gray-700 transition-all duration-300 hover:border-purple-400">
+                </div>
+                <div class="text-lg text-gray-300">
+                    <p class="mb-4">
+                        สวัสดีครับ! ผม กาย เมื่อก่อนผมแทบไม่รู้จักเทคดนโลยีเลย เมื่อเวลาผ่านไปพอโตขึ้นเทคโนโลยีใหม่ๆเริ่มเข้ามา ผมก็เริ่มเข้าไปใช้เทคโนโลยี ผมก็เริ่มหลงไหลในเทคโนโลยี
+                    </p>
+                    <p class="mb-6">
+                        ตอนนี้ผมชอบทำเซิฟ<span class="text-purple-400 font-bold">Minecraft</span> 
+                        มากกกกกกกกก 
+                    </p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="card-custom">
-          <h3 class="text-2xl font-bold text-purple-400 mb-4" data-th="ภาพยนตร์ที่ชอบ" data-en="Favorite Movie">ภาพยนตร์ที่ชอบ</h3>
-          <img src="https://m.media-amazon.com/images/S/pv-target-images/d052cb8b7d6d4cc258ced5a7588067c1259be2119cc03af3fceaecd9a3846a31.jpg" alt="Movie Poster" class="rounded-md mb-4 border border-gray-700">
-          <p class="text-xl font-bold text-white">Call Me by Your Name</p>
-          <p class="text-lg text-gray-400" data-th="พ.ศ. 2560 ‧ โรแมนติก/ชีวิต" data-en="2017 ‧ Romance/Drama">พ.ศ. 2560 ‧ โรแมนติก/ชีวิต</p>
+    <section id="favorites" class="py-20 bg-gray-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-12">
+                MY FAVORITES
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                <div class="card-custom">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">FAVORITE SONG</h3>
+                    <img src="https://i.scdn.co/image/ab67616d0000b27397639445be97b21a453dc942" alt="Album Art" class="rounded-md mb-4 border border-gray-700">
+                    <p class="text-xl font-bold text-white">bluebird</p>
+                    <p class="text-lg text-gray-400">lana del rey</p>
+                    <div class="w-full bg-gray-600 rounded-full h-1.5 mt-4">
+                        <div class="bg-purple-500 h-1.5 rounded-full animate-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="card-custom">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">FAVORITE MOVIE</h3>
+                    <img src="https://m.media-amazon.com/images/S/pv-target-images/d052cb8b7d6d4cc258ced5a7588067c1259be2119cc03af3fceaecd9a3846a31.jpg" alt="Movie Poster" class="rounded-md mb-4 border border-gray-700">
+                    <p class="text-xl font-bold text-white">call me by your name</p>
+                    <p class="text-lg text-gray-400">พ.ศ. 2560 ‧ โรแมนติก/ชีวิต</p>
+                </div>
+
+                <div class="card-custom">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">T.M.I.</h3>
+                    <ul class="list-none space-y-3 text-lg">
+                        <li><span class="text-purple-400">❖</span> <strong>กิจกรรมที่ชอบ:</strong> นอน 😴</li>
+                        <li><span class="text-purple-400">❖</span> <strong>เครื่องดื่มที่ชอบ:</strong> ชาเขียว</li>
+                        <li><span class="text-purple-400">❖</span> <strong>เกมที่เล่นบ่อย:</strong> Minecraft</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div class="card-custom">
-          <h3 class="text-2xl font-bold text-purple-400 mb-4">T.M.I.</h3>
-          <ul class="list-none space-y-3 text-lg">
-            <li data-th="❖ กิจกรรมที่ชอบ: นอน 😴" data-en="❖ Favorite Activity: Sleeping 😴">❖ กิจกรรมที่ชอบ: นอน 😴</li>
-            <li data-th="❖ เครื่องดื่มที่ชอบ: ชาเขียว" data-en="❖ Favorite Drink: Green Tea">❖ เครื่องดื่มที่ชอบ: ชาเขียว</li>
-            <li data-th="❖ เกมที่เล่นบ่อย: Minecraft" data-en="❖ Most Played Game: Minecraft">❖ เกมที่เล่นบ่อย: Minecraft</li>
-          </ul>
+    </section>
+    <section id="projects" class="py-20 bg-gray-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-12">PROJECTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card-custom">
+                    <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 3" class="rounded-md mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">[ไว้มีแล้วจะมาใส่นะ]</h3>
+                    <p class="text-gray-300 mb-4">ไว้มีแล้วจะมาใส่นะ</p>
+                    <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+                <div class="card-custom">
+                    <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 2" class="rounded-md mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">[ไว้มีแล้วจะมาใส่นะ]</h3>
+                    <p class="text-gray-300 mb-4">ไว้มีแล้วจะมาใส่นะ</p>
+                    <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+                <div class="card-custom">
+                    <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 3" class="rounded-md mb-4 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">[ไว้มีแล้วจะมาใส่นะ]</h3>
+                    <p class="text-gray-300 mb-4">ไว้มีแล้วจะมาใส่นะ</p>
+                    <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors">ดูโปรเจกต์ &gt;</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 🧩 Projects -->
-  <section id="projects" class="py-20 bg-gray-950">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center text-purple-400 mb-12" data-th="ผลงาน" data-en="Projects">ผลงาน</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card-custom">
-          <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 1" class="rounded-md mb-4 border border-gray-700">
-          <h3 class="text-2xl font-bold text-purple-400 mb-2" data-th="[ไว้มีแล้วจะมาใส่นะ]" data-en="[Coming soon]">[ไว้มีแล้วจะมาใส่นะ]</h3>
-          <p class="text-gray-300 mb-4" data-th="ไว้มีแล้วจะมาใส่นะ" data-en="To be added soon">ไว้มีแล้วจะมาใส่นะ</p>
-          <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors" data-th="ดูโปรเจกต์ >" data-en="View Project >">ดูโปรเจกต์ ></a>
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-8">CONTACT ME</h2>
+            <p class="text-lg text-gray-300 mb-10">สนใจร่วมงาน หรืออยากพูดคุยทักทาย ติดต่อผมได้เลยครับ</p>
+            
+            <div class="flex justify-center space-x-8">
+                <a href="[Your GitHub URL]" target="_blank" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="GitHub">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.831.092-.646.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.949 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.025.798-.222 1.647-.333 2.495-.337.848.004 1.697.115 2.495.337 1.91-1.295 2.75-1.025 2.75-1.025.546 1.375.201 2.392.098 2.645.64.698 1.03 1.59 1.03 2.682 0 3.848-2.339 4.691-4.564 4.942.359.309.678.92.678 1.856 0 1.342-.012 2.423-.012 2.752 0 .269.18.579.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="[Your Facebook URL]" target="_blank" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="Facebook">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.901v-2.89h2.537V9.63c0-2.508 1.493-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.771l-.443 2.89h-2.328v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="[Your Instagram URL]" target="_blank" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="Instagram">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zm0-10a4 4 0 100 8 4 4 0 000-8zm6.5-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
         </div>
+    </section>
 
-        <div class="card-custom">
-          <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 2" class="rounded-md mb-4 border border-gray-700">
-          <h3 class="text-2xl font-bold text-purple-400 mb-2" data-th="[ไว้มีแล้วจะมาใส่นะ]" data-en="[Coming soon]">[ไว้มีแล้วจะมาใส่นะ]</h3>
-          <p class="text-gray-300 mb-4" data-th="ไว้มีแล้วจะมาใส่นะ" data-en="To be added soon">ไว้มีแล้วจะมาใส่นะ</p>
-          <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors" data-th="ดูโปรเจกต์ >" data-en="View Project >">ดูโปรเจกต์ ></a>
+    <footer class="bg-gray-950 border-t border-gray-800 py-10">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+            <p class="text-sm text-purple-600">Komsan © All Right Reserved</p>
         </div>
+    </footer>
+    <script>
+        // --- ระบบแกลเลอรีรูปภาพ (Modal) ---
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                modalImage.src = this.src;
+                modal.classList.remove('hidden');
+            });
+        });
 
-        <div class="card-custom">
-          <img src="https://github.com/komsan2554/aboutkomsan/blob/main/Projectex.jpg?raw=true" alt="Project 3" class="rounded-md mb-4 border border-gray-700">
-          <h3 class="text-2xl font-bold text-purple-400 mb-2" data-th="[ไว้มีแล้วจะมาใส่นะ]" data-en="[Coming soon]">[ไว้มีแล้วจะมาใส่นะ]</h3>
-          <p class="text-gray-300 mb-4" data-th="ไว้มีแล้วจะมาใส่นะ" data-en="To be added soon">ไว้มีแล้วจะมาใส่นะ</p>
-          <a href="#" class="font-bold text-purple-500 hover:text-purple-300 transition-colors" data-th="ดูโปรเจกต์ >" data-en="View Project >">ดูโปรเจกต์ ></a>
-        </div>
-      </div>
-    </div>
-  </section>
+        function hideModal() {
+            modal.classList.add('hidden');
+        }
 
-  <!-- 📞 Contact -->
-  <section id="contact" class="py-20 bg-gray-900">
-    <div class="container mx-auto px-6 text-center max-w-3xl">
-      <h2 class="text-4xl font-bold text-center text-purple-400 mb-8" data-th="ติดต่อผม" data-en="Contact Me">ติดต่อผม</h2>
-      <p class="text-lg text-gray-300 mb-10" data-th="สนใจร่วมงาน หรืออยากพูดคุยทักทาย ติดต่อผมได้เลยครับ"
-         data-en="Interested in working together or just want to say hi? Feel free to contact me.">
-         สนใจร่วมงาน หรืออยากพูดคุยทักทาย ติดต่อผมได้เลยครับ
-      </p>
+        closeModal.addEventListener('click', hideModal);
 
-      <div class="flex justify-center space-x-8">
-        <a href="#" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="GitHub">
-          <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.831.092-.646.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.949 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.025.798-.222 1.647-.333 2.495-.337.848.004 1.697.115 2.495.337 1.91-1.295 2.75-1.025 2.75-1.025.546 1.375.201 2.392.098 2.645.64.698 1.03 1.59 1.03 2.682 0 3.848-2.339 4.691-4.564 4.942.359.309.678.92.678 1.856 0 1.342-.012 2.423-.012 2.752 0 .269.18.579.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="Facebook">
-          <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.901v-2.89h2.537V9.63c0-2.508 1.493-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.771l-.443 2.89h-2.328v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-purple-400 transform hover:scale-110 transition-all duration-300" title="Instagram">
-          <svg class="w-10 h-10" fill="currentColor"
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                hideModal();
+            }
+        });
+        
+        // เพิ่มการปิด Modal ด้วยปุ่ม Esc (Escape)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                hideModal();
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
